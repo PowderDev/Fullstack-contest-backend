@@ -1,0 +1,39 @@
+datasource db {
+  provider = "postgres"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider      = "prisma-client-js"
+  binaryTargets = ["native", "linux-musl-openssl-3.0.x"]
+}
+
+model SportsFacility {
+  id               Int              @id
+  name             String
+  active           IsActiveFacility
+  briefDescription String?
+  fullDescription  String?
+  federalSubject   String?
+  facilityAction   String?
+  actionStartDate  DateTime?
+  actionEndDate    DateTime?
+  budget           BigInt?
+  type             String?
+  coord_x          Decimal?
+  coord_y          Decimal?
+  address          String?
+  rating           Rating?
+}
+
+model Rating {
+  id         Int            @id @default(autoincrement())
+  rating     Decimal
+  facilityId Int            @unique
+  facility   SportsFacility @relation(fields: [facilityId], references: [id])
+}
+
+enum IsActiveFacility {
+  Y
+  N
+}
