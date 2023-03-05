@@ -1,18 +1,17 @@
-# Test task for Sector Business
-
 ## To start with Docker:
 
-### 1. Make db.env with:
-
-```
-  MYSQL_ROOT_PASSWORD=<your_password>
-  MYSQL_DATABASE=<your_db_name>
-```
-
-### 2. Make .env with:
-
+### Make an .env file in the root directory
 ```
   DATABASE_URL="mysql://root:<your_password>@mysql:3306/<your_db_name>"
+  POSTGRES_PASSWORD=<password>
+  POSTGRES_DB=<your_db_name>
+  PGDATA=<path_to_pg_data>
 ```
 
-#### You can use prisma via "prisma" container
+### Run the docker-compose file
+```
+  docker-compose up -d
+```
+
+
+### API will be available on port 4000
